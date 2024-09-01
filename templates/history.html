@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <table class="table tablestriped">
+        <thead>
+            <tr>
+                <th class="text-start">Symbol</th>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">Total</th>
+                <th class="text-end">Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through the database entries to display them in this table -->
+            {% for transaction in transactions %}
+                <tr>
+                    <td class="text-start">{{ transaction["symbol"] }}</td>
+                    <td class="text-end">{{ transaction["shares"]}}</td>
+                    <td class="text-end">{{ transaction["price"] | usd}}</td>
+                    <td class="text-end">{{ transaction["shares"] *  transaction["price"] }}</td>
+                    <td class="text-end">{{ transaction["timestamo"]}}</td>
+                </tr>
+            {% endfor %}
+    </table>
+    
+{% endblock %}
